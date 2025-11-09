@@ -80,8 +80,8 @@ export default function Home() {
       const repulsionStrength = 30 // Reduced strength for less interaction
 
       // Infinity sign (lemniscate of Bernoulli) parameters
-      const a = 280 // Size of infinity sign
-      const numParticles = 35 // More particles for smoother infinity sign
+      const a = 450 // Bigger size of infinity sign
+      const numParticles = 40 // More particles for smoother infinity sign
 
       for (let i = 0; i < numParticles; i++) {
         // Calculate position along infinity sign using parametric equations
@@ -112,13 +112,13 @@ export default function Home() {
           finalY = baseY + Math.sin(angle) * force
         }
 
-        // Make dots more visible - larger size and higher opacity
+        // Less visible dots - reduced opacity
         const size = 4.5 + Math.sin(time * 2 + i) * 1.5
-        const opacity = 0.65 + Math.sin(time + i) * 0.25
+        const opacity = 0.25 + Math.sin(time + i) * 0.15
 
         ctx.beginPath()
         ctx.arc(finalX, finalY, size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(99, 102, 241, ${Math.max(0.5, Math.min(0.9, opacity))})`
+        ctx.fillStyle = `rgba(99, 102, 241, ${Math.max(0.15, Math.min(0.4, opacity))})`
         ctx.fill()
       }
 
