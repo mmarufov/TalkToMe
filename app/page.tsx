@@ -73,22 +73,22 @@ export default function Home() {
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      // Add floating particles with cursor interaction - forming infinity sign
+      // Add floating particles forming infinity sign (lemniscate)
       const mouseX = mousePosRef.current.x
       const mouseY = mousePosRef.current.y
-      const repulsionRadius = 150 // Distance at which cursor affects particles
-      const repulsionStrength = 80 // How strong the push is
+      const repulsionRadius = 80 // Reduced distance for less interaction
+      const repulsionStrength = 30 // Reduced strength for less interaction
 
-      // Infinity sign (lemniscate) parameters
-      const a = 250 // Size of infinity sign
-      const numParticles = 30 // More particles for smoother infinity sign
+      // Infinity sign (lemniscate of Bernoulli) parameters
+      const a = 280 // Size of infinity sign
+      const numParticles = 35 // More particles for smoother infinity sign
 
       for (let i = 0; i < numParticles; i++) {
         // Calculate position along infinity sign using parametric equations
         // Each particle is at a different phase to form the complete shape
-        const t = (time * 0.5 + (i / numParticles) * Math.PI * 2) % (Math.PI * 2)
+        const t = (time * 0.3 + (i / numParticles) * Math.PI * 2) % (Math.PI * 2)
         
-        // Lemniscate of Bernoulli parametric equations
+        // Lemniscate of Bernoulli parametric equations (horizontal infinity sign)
         const denominator = 1 + Math.sin(t) * Math.sin(t)
         const baseX = (canvas.width / 2) + (a * Math.cos(t)) / denominator
         const baseY = (canvas.height / 2) + (a * Math.sin(t) * Math.cos(t)) / denominator
@@ -101,24 +101,24 @@ export default function Home() {
         let finalX = baseX
         let finalY = baseY
 
-        // Apply repulsion if cursor is close
+        // Apply subtle repulsion if cursor is very close (reduced interaction)
         if (distance < repulsionRadius && distance > 0) {
-          // Calculate repulsion force (stronger when closer)
+          // Calculate repulsion force (much weaker now)
           const force = (1 - distance / repulsionRadius) * repulsionStrength
           const angle = Math.atan2(dy, dx)
           
-          // Push particle away from cursor
+          // Push particle away from cursor (subtle)
           finalX = baseX + Math.cos(angle) * force
           finalY = baseY + Math.sin(angle) * force
         }
 
         // Make dots more visible - larger size and higher opacity
-        const size = 4 + Math.sin(time * 2 + i) * 1.5
-        const opacity = 0.6 + Math.sin(time + i) * 0.3
+        const size = 4.5 + Math.sin(time * 2 + i) * 1.5
+        const opacity = 0.65 + Math.sin(time + i) * 0.25
 
         ctx.beginPath()
         ctx.arc(finalX, finalY, size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(99, 102, 241, ${Math.max(0.4, Math.min(1, opacity))})`
+        ctx.fillStyle = `rgba(99, 102, 241, ${Math.max(0.5, Math.min(0.9, opacity))})`
         ctx.fill()
       }
 
