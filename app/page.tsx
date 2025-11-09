@@ -21,6 +21,9 @@ const staggerContainer = {
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mousePosRef = useRef({ x: -1000, y: -1000 })
+  const particleOffsetsRef = useRef<Array<{ x: number; y: number }>>(
+    Array(20).fill(null).map(() => ({ x: 0, y: 0 }))
+  )
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -76,8 +79,9 @@ export default function Home() {
       // Add floating particles with cursor interaction
       const mouseX = mousePosRef.current.x
       const mouseY = mousePosRef.current.y
-      const repulsionRadius = 150 // Distance at which cursor affects particles
-      const repulsionStrength = 80 // How strong the push is
+      const repulsionRadius = 180 // Distance at which cursor affects particles
+      const repulsionStrength = 35 // How strong the push is (reduced for smoother effect)
+      const smoothingFactor = 0.15 // How quickly particles respond (lower = smoother)
 
       for (let i = 0; i < 20; i++) {
         // Calculate base position (normal orbital movement)
@@ -89,25 +93,38 @@ export default function Home() {
         const dy = baseY - mouseY
         const distance = Math.sqrt(dx * dx + dy * dy)
 
-        let finalX = baseX
-        let finalY = baseY
+        // Get current offset
+        let targetOffsetX = 0
+        let targetOffsetY = 0
 
-        // Apply repulsion if cursor is close
+        // Calculate target offset if cursor is close
         if (distance < repulsionRadius && distance > 0) {
-          // Calculate repulsion force (stronger when closer)
-          const force = (1 - distance / repulsionRadius) * repulsionStrength
+          // Use smoother easing function (ease-out cubic)
+          const normalizedDistance = distance / repulsionRadius
+          const easeOut = 1 - Math.pow(1 - normalizedDistance, 3)
+          const force = easeOut * repulsionStrength
           const angle = Math.atan2(dy, dx)
           
-          // Push particle away from cursor
-          finalX = baseX + Math.cos(angle) * force
-          finalY = baseY + Math.sin(angle) * force
+          // Calculate target offset
+          targetOffsetX = Math.cos(angle) * force
+          targetOffsetY = Math.sin(angle) * force
         }
 
-        const size = 2 + Math.sin(time * 2 + i) * 1
+        // Smoothly interpolate to target offset
+        const currentOffset = particleOffsetsRef.current[i]
+        currentOffset.x += (targetOffsetX - currentOffset.x) * smoothingFactor
+        currentOffset.y += (targetOffsetY - currentOffset.y) * smoothingFactor
+
+        // Apply offset to base position
+        const finalX = baseX + currentOffset.x
+        const finalY = baseY + currentOffset.y
+
+        // Make dots more visible - larger size and higher opacity
+        const size = 3.5 + Math.sin(time * 2 + i) * 1.5
 
         ctx.beginPath()
         ctx.arc(finalX, finalY, size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(99, 102, 241, ${0.3 + Math.sin(time + i) * 0.2})`
+        ctx.fillStyle = `rgba(99, 102, 241, ${0.5 + Math.sin(time + i) * 0.25})`
         ctx.fill()
       }
 
