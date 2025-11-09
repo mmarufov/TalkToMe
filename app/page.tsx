@@ -145,7 +145,7 @@ export default function Home() {
           className="w-full"
         >
           {/* Video placeholder - replace this div with your video element when ready */}
-          <div className="w-full h-auto bg-gradient-to-r from-purple-200/50 via-blue-200/50 to-purple-200/50 flex items-center justify-center py-16">
+          <div className="w-full min-h-[600px] bg-gradient-to-r from-purple-200/50 via-blue-200/50 to-purple-200/50 flex items-center justify-center py-24">
             <div className="text-center p-8">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
                 <svg
