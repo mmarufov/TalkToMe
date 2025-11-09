@@ -36,12 +36,11 @@ export default function Home() {
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
 
-    // Track mouse position globally
+    // Track mouse position on window (works even when over other elements)
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect()
       mousePosRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
+        x: e.clientX,
+        y: e.clientY
       }
     }
 
@@ -49,40 +48,11 @@ export default function Home() {
       mousePosRef.current = { x: -1000, y: -1000 }
     }
 
-    // Track mouse on the entire window for better interaction
     window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('mouseout', handleMouseLeave)
-
-    // Particle system - restore original pattern with interactivity
-    const particleCount = 20
-    const particles: Array<{
-      x: number
-      y: number
-      vx: number
-      vy: number
-      baseX: number
-      baseY: number
-    }> = []
-
-    // Initialize particles
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: 0,
-        y: 0,
-        vx: 0,
-        vy: 0,
-        baseX: 0,
-        baseY: 0
-      })
-    }
+    window.addEventListener('mouseleave', handleMouseLeave)
 
     let animationFrame: number
     let time = 0
-
-    // Repulsion parameters
-    const repulsionRadius = 150 // Distance at which particles start to be affected
-    const repulsionStrength = 0.15 // How strong the repulsion is
-    const returnStrength = 0.08 // How quickly particles return to normal flow
 
     const animate = () => {
       time += 0.005
@@ -103,64 +73,43 @@ export default function Home() {
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      const centerX = canvas.width / 2
-      const centerY = canvas.height / 2
+      // Add floating particles with cursor interaction
       const mouseX = mousePosRef.current.x
       const mouseY = mousePosRef.current.y
+      const repulsionRadius = 150 // Distance at which cursor affects particles
+      const repulsionStrength = 80 // How strong the push is
 
-      // Update and draw particles
-      particles.forEach((particle, i) => {
-        // Calculate base position (original pattern)
-        const baseX = centerX + Math.sin(time + i) * (300 + Math.sin(time * 2 + i) * 100)
-        const baseY = centerY + Math.cos(time + i) * (200 + Math.cos(time * 2 + i) * 100)
-        
-        // Store base position for return calculation
-        particle.baseX = baseX
-        particle.baseY = baseY
+      for (let i = 0; i < 20; i++) {
+        // Calculate base position (normal orbital movement)
+        const baseX = (canvas.width / 2) + Math.sin(time + i) * (300 + Math.sin(time * 2 + i) * 100)
+        const baseY = (canvas.height / 2) + Math.cos(time + i) * (200 + Math.cos(time * 2 + i) * 100)
 
-        // Initialize position if not set
-        if (particle.x === 0 && particle.y === 0) {
-          particle.x = baseX
-          particle.y = baseY
-        }
-
-        // Calculate distance to cursor
-        const dx = particle.x - mouseX
-        const dy = particle.y - mouseY
+        // Calculate distance from cursor
+        const dx = baseX - mouseX
+        const dy = baseY - mouseY
         const distance = Math.sqrt(dx * dx + dy * dy)
 
-        // Apply repulsion force if cursor is nearby
-        if (distance < repulsionRadius && mouseX > 0 && mouseY > 0) {
+        let finalX = baseX
+        let finalY = baseY
+
+        // Apply repulsion if cursor is close
+        if (distance < repulsionRadius && distance > 0) {
+          // Calculate repulsion force (stronger when closer)
           const force = (1 - distance / repulsionRadius) * repulsionStrength
-          const angleToMouse = Math.atan2(dy, dx)
+          const angle = Math.atan2(dy, dx)
           
           // Push particle away from cursor
-          particle.vx += Math.cos(angleToMouse) * force * 10
-          particle.vy += Math.sin(angleToMouse) * force * 10
+          finalX = baseX + Math.cos(angle) * force
+          finalY = baseY + Math.sin(angle) * force
         }
 
-        // Gradually return to base position
-        const returnDx = baseX - particle.x
-        const returnDy = baseY - particle.y
-        particle.vx += returnDx * returnStrength
-        particle.vy += returnDy * returnStrength
-
-        // Apply velocity with damping
-        particle.vx *= 0.95
-        particle.vy *= 0.95
-        particle.x += particle.vx
-        particle.y += particle.vy
-
-        // Original size and opacity calculations
         const size = 2 + Math.sin(time * 2 + i) * 1
-        const opacity = 0.3 + Math.sin(time + i) * 0.2
 
-        // Draw particle
         ctx.beginPath()
-        ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(99, 102, 241, ${opacity})`
+        ctx.arc(finalX, finalY, size, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(99, 102, 241, ${0.3 + Math.sin(time + i) * 0.2})`
         ctx.fill()
-      })
+      }
 
       animationFrame = requestAnimationFrame(animate)
     }
@@ -170,7 +119,7 @@ export default function Home() {
     return () => {
       window.removeEventListener('resize', resizeCanvas)
       window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('mouseout', handleMouseLeave)
+      window.removeEventListener('mouseleave', handleMouseLeave)
       cancelAnimationFrame(animationFrame)
     }
   }, [])
