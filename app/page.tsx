@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import {
@@ -11,20 +10,6 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Twitter, Linkedin, Mail } from 'lucide-react'
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-}
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
-}
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false)
@@ -50,12 +35,7 @@ export default function Home() {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center justify-between"
-          >
+          <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold text-gray-900 tracking-tight">
               TalkToMe
             </Link>
@@ -80,70 +60,46 @@ export default function Home() {
               </button>
               <a
                 href="#testflight"
-                className="px-5 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+                className="px-5 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300"
               >
                 Join Beta
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 lg:pt-48 pb-24 sm:pb-32">
-        <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-          className="max-w-4xl mx-auto text-center"
-        >
-          <motion.p
-            variants={fadeInUp}
-            className="text-sm sm:text-base font-medium text-purple-600 mb-4 tracking-wide uppercase"
-          >
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-sm sm:text-base font-medium text-purple-600 mb-4 tracking-wide uppercase">
             AI-powered relationship assistant
-          </motion.p>
+          </p>
           
-          <motion.h1
-            variants={fadeInUp}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 tracking-tight leading-none"
-          >
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 tracking-tight leading-none">
             TalkToMe
-          </motion.h1>
+          </h1>
           
-          <motion.p
-            variants={fadeInUp}
-            className="text-2xl sm:text-3xl lg:text-4xl font-light mb-8 text-gray-700 tracking-tight leading-tight"
-          >
+          <p className="text-2xl sm:text-3xl lg:text-4xl font-light mb-8 text-gray-700 tracking-tight leading-tight">
             Express yourself. Connect deeper.
-          </motion.p>
+          </p>
           
-          <motion.p
-            variants={fadeInUp}
-            className="text-base sm:text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
+          <p className="text-base sm:text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
             Your AI companion for meaningful conversations. Navigate difficult moments with confidence and build stronger relationships through intelligent communication guidance.
-          </motion.p>
+          </p>
           
-          <motion.a
-            variants={fadeInUp}
+          <a
             href="#testflight"
-            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           >
             Join TestFlight Beta
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
       </section>
 
       {/* Video/Demo Placeholder Section */}
       <section className="relative z-10 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "100px 0px -100px 0px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full"
-        >
+        <div className="w-full">
           {/* Video placeholder - replace this div with your video element when ready */}
           <div className="w-full min-h-[600px] bg-gradient-to-r from-purple-200/50 via-blue-200/50 to-purple-200/50 flex items-center justify-center py-24">
             <div className="text-center p-8">
@@ -159,26 +115,15 @@ export default function Home() {
               <p className="text-gray-600 text-lg font-medium">Demo Video Coming Soon</p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* How It Works Section */}
       <section id="how-it-works" className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="max-w-6xl mx-auto"
-        >
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-16 text-gray-900 tracking-tight"
-          >
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-16 text-gray-900 tracking-tight">
             How It Works
-          </motion.h2>
+          </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
@@ -198,13 +143,9 @@ export default function Home() {
                 description: 'Strengthen your relationships over time.',
               }
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "100px 0px -100px 0px" }}
-                transition={{ duration: 0.6, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-sm border border-white/50 hover:shadow-md transition-all duration-500 hover:-translate-y-1"
+                className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-sm border border-white/50 hover:shadow-md transition-all duration-500"
               >
                 <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-4">
                   {item.step}
@@ -215,24 +156,18 @@ export default function Home() {
                 <p className="text-gray-600 leading-relaxed">
                   {item.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Bottom CTA / Footer */}
       <footer className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-2xl mx-auto text-center"
-        >
+        <div className="max-w-2xl mx-auto text-center">
           <a
             href="#testflight"
-            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 mb-12"
+            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 mb-12"
           >
             Join TestFlight Beta
           </a>
@@ -264,7 +199,7 @@ export default function Home() {
           <p className="text-sm text-gray-500">
             © 2025 TalkToMe. All rights reserved.
           </p>
-        </motion.div>
+        </div>
       </footer>
 
       {/* Privacy Policy Modal */}
