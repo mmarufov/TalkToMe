@@ -2,7 +2,15 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import { Twitter, Linkedin, Mail } from 'lucide-react'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -19,190 +27,174 @@ const staggerContainer = {
 }
 
 export default function Home() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const mousePosRef = useRef({ x: -1000, y: -1000 })
+  const [scrolled, setScrolled] = useState(false)
+  const [privacyOpen, setPrivacyOpen] = useState(false)
+  const [termsOpen, setTermsOpen] = useState(false)
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
     }
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
-
-    // Track mouse position on window (works even when over other elements)
-    const handleMouseMove = (e: MouseEvent) => {
-      mousePosRef.current = {
-        x: e.clientX,
-        y: e.clientY
-      }
-    }
-
-    const handleMouseLeave = () => {
-      mousePosRef.current = { x: -1000, y: -1000 }
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('mouseleave', handleMouseLeave)
-
-    let animationFrame: number
-    let time = 0
-
-    const animate = () => {
-      time += 0.005
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      // Create flowing gradient background
-      const gradient = ctx.createLinearGradient(
-        canvas.width / 2 + Math.sin(time) * 200,
-        canvas.height / 2 + Math.cos(time) * 200,
-        canvas.width / 2 + Math.sin(time + Math.PI) * 200,
-        canvas.height / 2 + Math.cos(time + Math.PI) * 200
-      )
-
-      gradient.addColorStop(0, 'rgba(99, 102, 241, 0.15)')
-      gradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.1)')
-      gradient.addColorStop(1, 'rgba(59, 130, 246, 0.15)')
-
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      // Add floating particles forming infinity sign (lemniscate)
-      const mouseX = mousePosRef.current.x
-      const mouseY = mousePosRef.current.y
-      const repulsionRadius = 80 // Reduced distance for less interaction
-      const repulsionStrength = 30 // Reduced strength for less interaction
-
-      // Infinity sign (lemniscate of Bernoulli) parameters
-      const a = 450 // Bigger size of infinity sign
-      const numParticles = 40 // More particles for smoother infinity sign
-
-      for (let i = 0; i < numParticles; i++) {
-        // Calculate position along infinity sign using parametric equations
-        // Each particle is at a different phase to form the complete shape
-        const t = (time * 0.3 + (i / numParticles) * Math.PI * 2) % (Math.PI * 2)
-        
-        // Lemniscate of Bernoulli parametric equations (horizontal infinity sign)
-        const denominator = 1 + Math.sin(t) * Math.sin(t)
-        const baseX = (canvas.width / 2) + (a * Math.cos(t)) / denominator
-        const baseY = (canvas.height / 2) + (a * Math.sin(t) * Math.cos(t)) / denominator
-
-        // Calculate distance from cursor
-        const dx = baseX - mouseX
-        const dy = baseY - mouseY
-        const distance = Math.sqrt(dx * dx + dy * dy)
-
-        let finalX = baseX
-        let finalY = baseY
-
-        // Apply subtle repulsion if cursor is very close (reduced interaction)
-        if (distance < repulsionRadius && distance > 0) {
-          // Calculate repulsion force (much weaker now)
-          const force = (1 - distance / repulsionRadius) * repulsionStrength
-          const angle = Math.atan2(dy, dx)
-          
-          // Push particle away from cursor (subtle)
-          finalX = baseX + Math.cos(angle) * force
-          finalY = baseY + Math.sin(angle) * force
-        }
-
-        // Less visible dots - reduced opacity
-        const size = 4.5 + Math.sin(time * 2 + i) * 1.5
-        const opacity = 0.25 + Math.sin(time + i) * 0.15
-
-        ctx.beginPath()
-        ctx.arc(finalX, finalY, size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(99, 102, 241, ${Math.max(0.15, Math.min(0.4, opacity))})`
-        ctx.fill()
-      }
-
-      animationFrame = requestAnimationFrame(animate)
-    }
-
-    animate()
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas)
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('mouseleave', handleMouseLeave)
-      cancelAnimationFrame(animationFrame)
-    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <main className="min-h-screen bg-white relative overflow-hidden">
-      {/* Animated Background Canvas */}
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{ mixBlendMode: 'multiply' }}
-      />
-
+    <main className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-50 to-blue-100 relative overflow-hidden">
       {/* Navigation */}
-      <nav className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex items-center justify-between"
-        >
-          <div className="text-2xl font-semibold text-gray-900 tracking-tight">
-            TalkToMe
-          </div>
-        </motion.div>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-white/80 backdrop-blur-md shadow-sm'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center justify-between"
+          >
+            <Link href="/" className="text-2xl font-bold text-gray-900 tracking-tight">
+              TalkToMe
+            </Link>
+            <div className="flex items-center gap-6 sm:gap-8">
+              <Link
+                href="#"
+                className="hidden sm:inline-block text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium text-sm"
+              >
+                Home
+              </Link>
+              <Link
+                href="#how-it-works"
+                className="hidden sm:inline-block text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium text-sm"
+              >
+                About
+              </Link>
+              <button
+                onClick={() => setPrivacyOpen(true)}
+                className="hidden sm:inline-block text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium text-sm"
+              >
+                Privacy
+              </button>
+              <a
+                href="#testflight"
+                className="px-5 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+              >
+                Join Beta
+              </a>
+            </div>
+          </motion.div>
+        </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40">
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 lg:pt-48 pb-24 sm:pb-32">
         <motion.div
           variants={staggerContainer}
           initial="initial"
           animate="animate"
-          className="max-w-5xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-center"
         >
+          <motion.p
+            variants={fadeInUp}
+            className="text-sm sm:text-base font-medium text-purple-600 mb-4 tracking-wide uppercase"
+          >
+            AI-powered relationship assistant
+          </motion.p>
+          
           <motion.h1
             variants={fadeInUp}
-            className="text-6xl sm:text-7xl lg:text-8xl font-semibold mb-8 text-gray-900 tracking-tight leading-none"
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 tracking-tight leading-none"
           >
             TalkToMe
           </motion.h1>
           
           <motion.p
             variants={fadeInUp}
-            className="text-3xl sm:text-4xl lg:text-5xl font-light mb-8 text-gray-700 tracking-tight leading-tight"
+            className="text-2xl sm:text-3xl lg:text-4xl font-light mb-8 text-gray-700 tracking-tight leading-tight"
           >
-            Express yourself.<br />
-            Connect deeper.
+            Express yourself. Connect deeper.
           </motion.p>
           
           <motion.p
             variants={fadeInUp}
-            className="text-lg sm:text-xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed font-light"
+            className="text-base sm:text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed"
           >
-            Your AI companion for meaningful conversations. 
-            Navigate difficult moments with confidence and build stronger relationships 
-            through intelligent communication guidance.
+            Your AI companion for meaningful conversations. Navigate difficult moments with confidence and build stronger relationships through intelligent communication guidance.
           </motion.p>
           
           <motion.a
             variants={fadeInUp}
-            href="https://testflight.apple.com/join/XXXXXX"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-10 py-4 bg-gray-900 text-white text-base font-medium rounded-full shadow-lg hover:shadow-xl hover:bg-gray-800 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+            href="#testflight"
+            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
           >
             Join TestFlight Beta
           </motion.a>
         </motion.div>
       </section>
 
-      {/* About Section */}
+      {/* How It Works Section */}
+      <section id="how-it-works" className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="max-w-6xl mx-auto"
+        >
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-16 text-gray-900 tracking-tight"
+          >
+            How It Works
+          </motion.h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                step: '1',
+                title: 'Start a conversation',
+                description: 'Talk naturally and express your thoughts.',
+              },
+              {
+                step: '2',
+                title: 'Get real-time guidance',
+                description: 'AI helps you phrase things with empathy and clarity.',
+              },
+              {
+                step: '3',
+                title: 'Connect deeper',
+                description: 'Strengthen your relationships over time.',
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-sm border border-white/50 hover:shadow-md transition-all duration-500 hover:-translate-y-1"
+              >
+                <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-4">
+                  {item.step}
+                </div>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Privacy & Terms Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -211,115 +203,151 @@ export default function Home() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-4xl mx-auto"
         >
-          <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-10 sm:p-16 shadow-sm border border-gray-100">
-            <h2 className="text-4xl sm:text-5xl font-semibold mb-8 text-gray-900 tracking-tight">
-              About TalkToMe
-            </h2>
-            <p className="text-xl sm:text-2xl text-gray-600 leading-relaxed font-light">
-              TalkToMe transforms how you communicate in relationships. Through AI-guided 
-              conversations, you'll understand emotions more deeply, express yourself with clarity, 
-              and build connections that matter. Whether navigating challenging moments or 
-              deepening emotional intelligence, TalkToMe is your trusted companion for growth.
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <motion.button
+              onClick={() => setPrivacyOpen(true)}
+              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-sm border border-white/50 hover:shadow-md transition-all duration-500 hover:-translate-y-1 text-left group"
+            >
+              <div className="text-4xl mb-4">🔒</div>
+              <h3 className="text-2xl font-semibold mb-3 text-gray-900 tracking-tight group-hover:text-purple-600 transition-colors">
+                Privacy Policy
+              </h3>
+              <p className="text-gray-600">
+                Learn how we protect your data and privacy.
+              </p>
+            </motion.button>
+
+            <motion.button
+              onClick={() => setTermsOpen(true)}
+              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-sm border border-white/50 hover:shadow-md transition-all duration-500 hover:-translate-y-1 text-left group"
+            >
+              <div className="text-4xl mb-4">📜</div>
+              <h3 className="text-2xl font-semibold mb-3 text-gray-900 tracking-tight group-hover:text-purple-600 transition-colors">
+                Terms of Use
+              </h3>
+              <p className="text-gray-600">
+                Read our terms and conditions.
+              </p>
+            </motion.button>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Bottom CTA / Footer */}
+      <footer className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl mx-auto text-center"
+        >
+          <a
+            href="#testflight"
+            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 mb-12"
+          >
+            Join TestFlight Beta
+          </a>
+          
+          <div className="flex justify-center gap-6 mb-8">
+            <a
+              href="#"
+              className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
+              aria-label="Twitter"
+            >
+              <Twitter className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
+              aria-label="Email"
+            >
+              <Mail className="w-5 h-5" />
+            </a>
+          </div>
+          
+          <p className="text-sm text-gray-500">
+            © 2025 TalkToMe. All rights reserved.
+          </p>
+        </motion.div>
+      </footer>
+
+      {/* Privacy Policy Modal */}
+      <Dialog open={privacyOpen} onOpenChange={setPrivacyOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">Privacy Policy</DialogTitle>
+            <DialogDescription className="text-base mt-2">
+              Last updated: January 2025
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-4 space-y-4 text-gray-700">
+            <p>
+              At TalkToMe, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Information We Collect</h3>
+            <p>
+              We collect information that you provide directly to us, including conversation data, preferences, and usage patterns to improve our AI assistant.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">How We Use Your Information</h3>
+            <p>
+              Your information is used to provide personalized communication guidance, improve our services, and enhance your experience with TalkToMe.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Data Security</h3>
+            <p>
+              We implement industry-standard security measures to protect your data from unauthorized access, alteration, disclosure, or destruction.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Contact Us</h3>
+            <p>
+              If you have questions about this Privacy Policy, please contact us at privacy@talktome.ai
             </p>
           </div>
-        </motion.div>
-      </section>
+        </DialogContent>
+      </Dialog>
 
-      {/* Features Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="max-w-7xl mx-auto"
-        >
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl sm:text-5xl font-semibold text-center mb-16 text-gray-900 tracking-tight"
-          >
-            Powerful Features
-          </motion.h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'AI-Guided Conversations',
-                description: 'Receive intelligent suggestions and prompts that help you navigate conversations with empathy and clarity.',
-                icon: '💬'
-              },
-              {
-                title: 'Emotional Insights',
-                description: 'Understand your emotional patterns and communication style through personalized analytics and insights.',
-                icon: '📊'
-              },
-              {
-                title: 'Growth Feedback',
-                description: 'Get constructive feedback and recommendations to continuously improve your communication skills.',
-                icon: '🌱'
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-white/70 backdrop-blur-xl rounded-2xl p-8 sm:p-10 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-500 hover:-translate-y-1"
-              >
-                <div className="text-4xl mb-6">{feature.icon}</div>
-                <h3 className="text-2xl font-semibold mb-4 text-gray-900 tracking-tight">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed font-light text-lg">
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
+      {/* Terms of Use Modal */}
+      <Dialog open={termsOpen} onOpenChange={setTermsOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">Terms of Use</DialogTitle>
+            <DialogDescription className="text-base mt-2">
+              Last updated: January 2025
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-4 space-y-4 text-gray-700">
+            <p>
+              Welcome to TalkToMe. By accessing or using our service, you agree to be bound by these Terms of Use.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Acceptance of Terms</h3>
+            <p>
+              By using TalkToMe, you acknowledge that you have read, understood, and agree to be bound by these terms and all applicable laws and regulations.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Use of Service</h3>
+            <p>
+              You agree to use TalkToMe only for lawful purposes and in a way that does not infringe the rights of others or restrict their use of the service.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Intellectual Property</h3>
+            <p>
+              All content, features, and functionality of TalkToMe are owned by us and are protected by international copyright, trademark, and other intellectual property laws.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Limitation of Liability</h3>
+            <p>
+              TalkToMe is provided "as is" without warranties of any kind. We are not liable for any indirect, incidental, or consequential damages arising from your use of the service.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Contact Us</h3>
+            <p>
+              If you have questions about these Terms of Use, please contact us at legal@talktome.ai
+            </p>
           </div>
-        </motion.div>
-      </section>
-
-      {/* Footer */}
-      <footer className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-100">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="flex flex-col sm:flex-row items-center justify-between gap-6"
-        >
-          <div className="text-xl font-semibold text-gray-900 tracking-tight">
-            TalkToMe
-          </div>
-          <div className="flex gap-8 text-gray-500">
-            <Link 
-              href="/privacy" 
-              className="hover:text-gray-900 transition-colors duration-200 font-light"
-            >
-              Privacy Policy
-            </Link>
-            <Link 
-              href="/terms" 
-              className="hover:text-gray-900 transition-colors duration-200 font-light"
-            >
-              Terms of Service
-            </Link>
-          </div>
-        </motion.div>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center text-gray-400 mt-8 text-sm font-light"
-        >
-          © {new Date().getFullYear()} TalkToMe. All rights reserved.
-        </motion.p>
-      </footer>
+        </DialogContent>
+      </Dialog>
     </main>
   )
 }
-
-
-
