@@ -21,9 +21,6 @@ const staggerContainer = {
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mousePosRef = useRef({ x: -1000, y: -1000 })
-  const particleOffsetsRef = useRef<Array<{ x: number; y: number }>>(
-    Array(20).fill(null).map(() => ({ x: 0, y: 0 }))
-  )
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -76,55 +73,52 @@ export default function Home() {
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      // Add floating particles with cursor interaction
+      // Add floating particles with cursor interaction - forming infinity sign
       const mouseX = mousePosRef.current.x
       const mouseY = mousePosRef.current.y
-      const repulsionRadius = 180 // Distance at which cursor affects particles
-      const repulsionStrength = 35 // How strong the push is (reduced for smoother effect)
-      const smoothingFactor = 0.15 // How quickly particles respond (lower = smoother)
+      const repulsionRadius = 150 // Distance at which cursor affects particles
+      const repulsionStrength = 80 // How strong the push is
 
-      for (let i = 0; i < 20; i++) {
-        // Calculate base position (normal orbital movement)
-        const baseX = (canvas.width / 2) + Math.sin(time + i) * (300 + Math.sin(time * 2 + i) * 100)
-        const baseY = (canvas.height / 2) + Math.cos(time + i) * (200 + Math.cos(time * 2 + i) * 100)
+      // Infinity sign (lemniscate) parameters
+      const a = 250 // Size of infinity sign
+      const numParticles = 30 // More particles for smoother infinity sign
+
+      for (let i = 0; i < numParticles; i++) {
+        // Calculate position along infinity sign using parametric equations
+        // Each particle is at a different phase to form the complete shape
+        const t = (time * 0.5 + (i / numParticles) * Math.PI * 2) % (Math.PI * 2)
+        
+        // Lemniscate of Bernoulli parametric equations
+        const denominator = 1 + Math.sin(t) * Math.sin(t)
+        const baseX = (canvas.width / 2) + (a * Math.cos(t)) / denominator
+        const baseY = (canvas.height / 2) + (a * Math.sin(t) * Math.cos(t)) / denominator
 
         // Calculate distance from cursor
         const dx = baseX - mouseX
         const dy = baseY - mouseY
         const distance = Math.sqrt(dx * dx + dy * dy)
 
-        // Get current offset
-        let targetOffsetX = 0
-        let targetOffsetY = 0
+        let finalX = baseX
+        let finalY = baseY
 
-        // Calculate target offset if cursor is close
+        // Apply repulsion if cursor is close
         if (distance < repulsionRadius && distance > 0) {
-          // Use smoother easing function (ease-out cubic)
-          const normalizedDistance = distance / repulsionRadius
-          const easeOut = 1 - Math.pow(1 - normalizedDistance, 3)
-          const force = easeOut * repulsionStrength
+          // Calculate repulsion force (stronger when closer)
+          const force = (1 - distance / repulsionRadius) * repulsionStrength
           const angle = Math.atan2(dy, dx)
           
-          // Calculate target offset
-          targetOffsetX = Math.cos(angle) * force
-          targetOffsetY = Math.sin(angle) * force
+          // Push particle away from cursor
+          finalX = baseX + Math.cos(angle) * force
+          finalY = baseY + Math.sin(angle) * force
         }
 
-        // Smoothly interpolate to target offset
-        const currentOffset = particleOffsetsRef.current[i]
-        currentOffset.x += (targetOffsetX - currentOffset.x) * smoothingFactor
-        currentOffset.y += (targetOffsetY - currentOffset.y) * smoothingFactor
-
-        // Apply offset to base position
-        const finalX = baseX + currentOffset.x
-        const finalY = baseY + currentOffset.y
-
         // Make dots more visible - larger size and higher opacity
-        const size = 3.5 + Math.sin(time * 2 + i) * 1.5
+        const size = 4 + Math.sin(time * 2 + i) * 1.5
+        const opacity = 0.6 + Math.sin(time + i) * 0.3
 
         ctx.beginPath()
         ctx.arc(finalX, finalY, size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(99, 102, 241, ${0.5 + Math.sin(time + i) * 0.25})`
+        ctx.fillStyle = `rgba(99, 102, 241, ${Math.max(0.4, Math.min(1, opacity))})`
         ctx.fill()
       }
 
