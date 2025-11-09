@@ -10,7 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Twitter, Linkedin, Mail } from 'lucide-react'
+import { Twitter, Linkedin, Mail, Lock, FileText } from 'lucide-react'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -208,7 +208,9 @@ export default function Home() {
               onClick={() => setPrivacyOpen(true)}
               className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-sm border border-white/50 hover:shadow-md transition-all duration-500 hover:-translate-y-1 text-left group"
             >
-              <div className="text-4xl mb-4">🔒</div>
+              <div className="mb-4 w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Lock className="w-6 h-6 text-white" />
+              </div>
               <h3 className="text-2xl font-semibold mb-3 text-gray-900 tracking-tight group-hover:text-purple-600 transition-colors">
                 Privacy Policy
               </h3>
@@ -221,7 +223,9 @@ export default function Home() {
               onClick={() => setTermsOpen(true)}
               className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-sm border border-white/50 hover:shadow-md transition-all duration-500 hover:-translate-y-1 text-left group"
             >
-              <div className="text-4xl mb-4">📜</div>
+              <div className="mb-4 w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <FileText className="w-6 h-6 text-white" />
+              </div>
               <h3 className="text-2xl font-semibold mb-3 text-gray-900 tracking-tight group-hover:text-purple-600 transition-colors">
                 Terms of Use
               </h3>
