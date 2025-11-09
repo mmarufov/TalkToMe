@@ -3,6 +3,13 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import { Twitter, Linkedin, Mail } from 'lucide-react'
 
 const fadeInUp = {
@@ -21,6 +28,8 @@ const staggerContainer = {
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false)
+  const [privacyOpen, setPrivacyOpen] = useState(false)
+  const [termsOpen, setTermsOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,6 +72,12 @@ export default function Home() {
               >
                 About
               </Link>
+              <button
+                onClick={() => setPrivacyOpen(true)}
+                className="hidden sm:inline-block text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium text-sm"
+              >
+                Privacy
+              </button>
               <a
                 href="#testflight"
                 className="px-5 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
@@ -120,33 +135,28 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Video/Photo Placeholder Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      {/* Video/Demo Placeholder Section */}
+      <section className="relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "100px 0px -100px 0px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-5xl mx-auto"
+          className="w-full"
         >
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-purple-200 via-blue-100 to-blue-200 flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center">
+          {/* Video placeholder - replace this div with your video element when ready */}
+          <div className="w-full h-auto bg-gradient-to-r from-purple-200/50 via-blue-200/50 to-purple-200/50 flex items-center justify-center py-16">
+            <div className="text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
                 <svg
-                  className="w-8 h-8 text-purple-600"
-                  fill="none"
+                  className="w-8 h-8 text-white ml-1"
+                  fill="currentColor"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  />
+                  <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
-              <p className="text-gray-600 font-medium">Video placeholder</p>
+              <p className="text-gray-600 text-lg font-medium">Demo Video Coming Soon</p>
             </div>
           </div>
         </motion.div>
@@ -210,6 +220,122 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+
+      {/* Bottom CTA / Footer */}
+      <footer className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl mx-auto text-center"
+        >
+          <a
+            href="#testflight"
+            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 mb-12"
+          >
+            Join TestFlight Beta
+          </a>
+          
+          <div className="flex justify-center gap-6 mb-8">
+            <a
+              href="#"
+              className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
+              aria-label="Twitter"
+            >
+              <Twitter className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
+              aria-label="Email"
+            >
+              <Mail className="w-5 h-5" />
+            </a>
+          </div>
+          
+          <p className="text-sm text-gray-500">
+            © 2025 TalkToMe. All rights reserved.
+          </p>
+        </motion.div>
+      </footer>
+
+      {/* Privacy Policy Modal */}
+      <Dialog open={privacyOpen} onOpenChange={setPrivacyOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">Privacy Policy</DialogTitle>
+            <DialogDescription className="text-base mt-2">
+              Last updated: January 2025
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-4 space-y-4 text-gray-700">
+            <p>
+              At TalkToMe, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Information We Collect</h3>
+            <p>
+              We collect information that you provide directly to us, including conversation data, preferences, and usage patterns to improve our AI assistant.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">How We Use Your Information</h3>
+            <p>
+              Your information is used to provide personalized communication guidance, improve our services, and enhance your experience with TalkToMe.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Data Security</h3>
+            <p>
+              We implement industry-standard security measures to protect your data from unauthorized access, alteration, disclosure, or destruction.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Contact Us</h3>
+            <p>
+              If you have questions about this Privacy Policy, please contact us at privacy@talktome.ai
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Terms of Use Modal */}
+      <Dialog open={termsOpen} onOpenChange={setTermsOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">Terms of Use</DialogTitle>
+            <DialogDescription className="text-base mt-2">
+              Last updated: January 2025
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-4 space-y-4 text-gray-700">
+            <p>
+              Welcome to TalkToMe. By accessing or using our service, you agree to be bound by these Terms of Use.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Acceptance of Terms</h3>
+            <p>
+              By using TalkToMe, you acknowledge that you have read, understood, and agree to be bound by these terms and all applicable laws and regulations.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Use of Service</h3>
+            <p>
+              You agree to use TalkToMe only for lawful purposes and in a way that does not infringe the rights of others or restrict their use of the service.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Intellectual Property</h3>
+            <p>
+              All content, features, and functionality of TalkToMe are owned by us and are protected by international copyright, trademark, and other intellectual property laws.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Limitation of Liability</h3>
+            <p>
+              TalkToMe is provided "as is" without warranties of any kind. We are not liable for any indirect, incidental, or consequential damages arising from your use of the service.
+            </p>
+            <h3 className="font-semibold text-lg mt-6">Contact Us</h3>
+            <p>
+              If you have questions about these Terms of Use, please contact us at legal@talktome.ai
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </main>
   )
 }
