@@ -53,33 +53,26 @@ export default function Home() {
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('mouseout', handleMouseLeave)
 
-    // Particle system
-    const particleCount = 30
+    // Particle system - restore original pattern with interactivity
+    const particleCount = 20
     const particles: Array<{
-      baseAngle: number
-      baseRadius: number
-      baseSpeed: number
       x: number
       y: number
       vx: number
       vy: number
-      size: number
-      opacity: number
+      baseX: number
+      baseY: number
     }> = []
 
     // Initialize particles
     for (let i = 0; i < particleCount; i++) {
-      const baseAngle = (i / particleCount) * Math.PI * 2
       particles.push({
-        baseAngle,
-        baseRadius: 200 + Math.random() * 200,
-        baseSpeed: 0.3 + Math.random() * 0.2,
         x: 0,
         y: 0,
         vx: 0,
         vy: 0,
-        size: 2 + Math.random() * 2,
-        opacity: 0.2 + Math.random() * 0.3
+        baseX: 0,
+        baseY: 0
       })
     }
 
@@ -89,7 +82,7 @@ export default function Home() {
     // Repulsion parameters
     const repulsionRadius = 150 // Distance at which particles start to be affected
     const repulsionStrength = 0.15 // How strong the repulsion is
-    const returnStrength = 0.05 // How quickly particles return to normal flow
+    const returnStrength = 0.08 // How quickly particles return to normal flow
 
     const animate = () => {
       time += 0.005
@@ -117,11 +110,19 @@ export default function Home() {
 
       // Update and draw particles
       particles.forEach((particle, i) => {
-        // Calculate base position (normal flow)
-        const angle = particle.baseAngle + time * particle.baseSpeed
-        const radiusVariation = Math.sin(time * 2 + i) * 50
-        const baseX = centerX + Math.cos(angle) * (particle.baseRadius + radiusVariation)
-        const baseY = centerY + Math.sin(angle) * (particle.baseRadius * 0.6 + radiusVariation)
+        // Calculate base position (original pattern)
+        const baseX = centerX + Math.sin(time + i) * (300 + Math.sin(time * 2 + i) * 100)
+        const baseY = centerY + Math.cos(time + i) * (200 + Math.cos(time * 2 + i) * 100)
+        
+        // Store base position for return calculation
+        particle.baseX = baseX
+        particle.baseY = baseY
+
+        // Initialize position if not set
+        if (particle.x === 0 && particle.y === 0) {
+          particle.x = baseX
+          particle.y = baseY
+        }
 
         // Calculate distance to cursor
         const dx = particle.x - mouseX
@@ -150,16 +151,14 @@ export default function Home() {
         particle.x += particle.vx
         particle.y += particle.vy
 
-        // Initialize position if not set
-        if (particle.x === 0 && particle.y === 0) {
-          particle.x = baseX
-          particle.y = baseY
-        }
+        // Original size and opacity calculations
+        const size = 2 + Math.sin(time * 2 + i) * 1
+        const opacity = 0.3 + Math.sin(time + i) * 0.2
 
         // Draw particle
         ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(99, 102, 241, ${particle.opacity})`
+        ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(99, 102, 241, ${opacity})`
         ctx.fill()
       })
 
