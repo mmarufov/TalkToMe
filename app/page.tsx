@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import {
@@ -10,6 +11,12 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Twitter, Linkedin, Mail } from 'lucide-react'
+
+const fadeIn = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { duration: 0.6 }
+}
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false)
@@ -35,7 +42,12 @@ export default function Home() {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-between"
+          >
             <Link href="/" className="text-2xl font-bold text-gray-900 tracking-tight">
               TalkToMe
             </Link>
@@ -65,13 +77,18 @@ export default function Home() {
                 Join Beta
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 lg:pt-48 pb-24 sm:pb-32">
-        <div className="max-w-4xl mx-auto text-center">
+        <motion.div
+          variants={fadeIn}
+          initial="initial"
+          animate="animate"
+          className="max-w-4xl mx-auto text-center"
+        >
           <p className="text-sm sm:text-base font-medium text-purple-600 mb-4 tracking-wide uppercase">
             AI-powered relationship assistant
           </p>
@@ -94,12 +111,18 @@ export default function Home() {
           >
             Join TestFlight Beta
           </a>
-        </div>
+        </motion.div>
       </section>
 
       {/* Video/Demo Placeholder Section */}
       <section className="relative z-10 w-full">
-        <div className="w-full">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="w-full"
+        >
           {/* Video placeholder - replace this div with your video element when ready */}
           <div className="w-full min-h-[600px] bg-gradient-to-r from-purple-200/50 via-blue-200/50 to-purple-200/50 flex items-center justify-center py-24">
             <div className="text-center p-8">
@@ -115,12 +138,18 @@ export default function Home() {
               <p className="text-gray-600 text-lg font-medium">Demo Video Coming Soon</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* How It Works Section */}
       <section id="how-it-works" className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-        <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-6xl mx-auto"
+        >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-16 text-gray-900 tracking-tight">
             How It Works
           </h2>
@@ -143,8 +172,12 @@ export default function Home() {
                 description: 'Strengthen your relationships over time.',
               }
             ].map((item, index) => (
-              <div
+              <motion.div
                 key={index}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-sm border border-white/50 hover:shadow-md transition-all duration-500"
               >
                 <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-4">
@@ -156,15 +189,21 @@ export default function Home() {
                 <p className="text-gray-600 leading-relaxed">
                   {item.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Bottom CTA / Footer */}
       <footer className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div className="max-w-2xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-2xl mx-auto text-center"
+        >
           <a
             href="#testflight"
             className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 mb-12"
@@ -199,7 +238,7 @@ export default function Home() {
           <p className="text-sm text-gray-500">
             © 2025 TalkToMe. All rights reserved.
           </p>
-        </div>
+        </motion.div>
       </footer>
 
       {/* Privacy Policy Modal */}
