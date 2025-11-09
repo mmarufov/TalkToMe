@@ -37,7 +37,7 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-2xl font-bold mb-4 text-gray-900 mb-4">Introduction</h2>
                 <p>
-                  TalkToMe (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. 
+                  TalkToMe (&#34;we,&#34; &#34;our,&#34; or &#34;us&#34;) is committed to protecting your privacy. 
                   This Privacy Policy explains how we collect, use, disclose, and safeguard 
                   your information when you use our mobile application and services.
                 </p>

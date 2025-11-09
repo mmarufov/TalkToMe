@@ -91,7 +91,7 @@ export default function Home() {
             <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
               TalkToMe transforms how you communicate in relationships by providing AI-guided 
               conversations that help you understand emotions, express yourself clearly, and 
-              build stronger connections. Whether you&apos;re navigating difficult conversations or 
+              build stronger connections. Whether you&#39;re navigating difficult conversations or 
               seeking to deepen your emotional intelligence, TalkToMe is your trusted companion 
               for meaningful dialogue and personal growth.
             </p>

@@ -37,7 +37,7 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold mb-4 text-gray-900 mb-4">Agreement to Terms</h2>
                 <p>
-                  By accessing or using TalkToMe (&quot;the Service&quot;), you agree to be bound by 
+                  By accessing or using TalkToMe (&#34;the Service&#34;), you agree to be bound by 
                   these Terms of Service. If you disagree with any part of these terms, 
                   you may not access the Service.
                 </p>
@@ -81,7 +81,7 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-bold mb-4 text-gray-900 mb-4">Disclaimer</h2>
                 <p>
-                  The materials on TalkToMe are provided on an &apos;as is&apos; basis. TalkToMe makes 
+                  The materials on TalkToMe are provided on an &#39;as is&#39; basis. TalkToMe makes 
                   no warranties, expressed or implied, and hereby disclaims and negates all 
                   other warranties including, without limitation, implied warranties or 
                   conditions of merchantability, fitness for a particular purpose, or 
