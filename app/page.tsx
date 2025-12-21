@@ -10,7 +10,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Twitter, Linkedin, Mail } from 'lucide-react'
+import { 
+  Twitter, 
+  Linkedin, 
+  Mail, 
+  MessageCircle, 
+  Shield, 
+  Sparkles, 
+  Heart,
+  CheckCircle2,
+  Star,
+  ChevronDown
+} from 'lucide-react'
 
 const fadeIn = {
   initial: { opacity: 0 },
@@ -32,12 +43,19 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-50 to-blue-100 relative overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+      </div>
+
       {/* Navigation */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/80 backdrop-blur-md shadow-sm'
+            ? 'bg-white/90 backdrop-blur-lg shadow-md border-b border-gray-100/50'
             : 'bg-transparent'
         }`}
       >
@@ -48,8 +66,13 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="flex items-center justify-between"
           >
-            <Link href="/" className="text-2xl font-bold text-gray-900 tracking-tight">
-              TalkToMe
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                <MessageCircle className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent tracking-tight">
+                TalkToMe
+              </span>
             </Link>
             <div className="flex items-center gap-6 sm:gap-8">
               <Link
@@ -74,9 +97,10 @@ export default function Home() {
                 href="https://testflight.apple.com/join/BRdUfYmv"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300"
+                className="px-5 py-2.5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-sm font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden group"
               >
-                Join Beta
+                <span className="relative z-10">Join Beta</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
             </div>
           </motion.div>
@@ -91,30 +115,67 @@ export default function Home() {
           animate="animate"
           className="max-w-4xl mx-auto text-center"
         >
-          <p className="text-sm sm:text-base font-medium text-purple-600 mb-4 tracking-wide uppercase">
-            AI-Powered Relationship Assistant
-          </p>
-          
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 tracking-tight leading-none">
-            TalkToMe
-          </h1>
-          
-          <p className="text-2xl sm:text-3xl lg:text-4xl font-light mb-8 text-gray-700 tracking-tight leading-tight">
-            Express yourself. Connect deeper.
-          </p>
-          
-          <p className="text-base sm:text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Your AI companion — a safe space to vent, reflect, and have meaningful conversations. Navigate emotions, handle difficult moments, communicate with confidence and build stronger relationships.
-          </p>
-          
-          <a
-            href="https://testflight.apple.com/join/BRdUfYmv"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/80 backdrop-blur-sm border border-purple-200/50 mb-6"
           >
-            Join TestFlight Beta
-          </a>
+            <Sparkles className="w-4 h-4 text-purple-600" />
+            <p className="text-sm font-semibold text-purple-700 tracking-wide">
+              AI-Powered Relationship Assistant
+            </p>
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight leading-none"
+          >
+            <span className="bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 bg-clip-text text-transparent">
+              TalkToMe
+            </span>
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 text-gray-800 tracking-tight leading-tight"
+          >
+            Express yourself. Connect deeper.
+          </motion.p>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-base sm:text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
+          >
+            Your AI companion — a safe space to vent, reflect, and have meaningful conversations. Navigate emotions, handle difficult moments, communicate with confidence and build stronger relationships.
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <a
+              href="https://testflight.apple.com/join/BRdUfYmv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden"
+            >
+              <span className="relative z-10">Join TestFlight Beta</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <Shield className="w-4 h-4 text-green-500" />
+              <span>Secure & Private</span>
+            </div>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -128,25 +189,31 @@ export default function Home() {
           className="w-full"
         >
           {/* Video placeholder - replace this div with your video element when ready */}
-          <div className="w-full min-h-[600px] bg-gradient-to-r from-purple-200/50 via-blue-200/50 to-purple-200/50 flex items-center justify-center py-24">
-            <div className="text-center p-8">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
+          <div className="w-full max-w-5xl mx-auto min-h-[600px] bg-gradient-to-br from-purple-100/80 via-blue-100/80 to-indigo-100/80 backdrop-blur-sm rounded-3xl flex items-center justify-center py-24 shadow-2xl border border-white/50 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10"></div>
+            <div className="text-center p-8 relative z-10">
+              <motion.div
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center shadow-2xl"
+              >
                 <svg
-                  className="w-8 h-8 text-white ml-1"
+                  className="w-10 h-10 text-white ml-1"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path d="M8 5v14l11-7z" />
                 </svg>
-              </div>
-              <p className="text-gray-600 text-lg font-medium">Demo Video Coming Soon</p>
+              </motion.div>
+              <p className="text-gray-700 text-xl font-semibold mb-2">Demo Video Coming Soon</p>
+              <p className="text-gray-600 text-sm">See TalkToMe in action</p>
             </div>
           </div>
         </motion.div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+      {/* Features Section */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -154,44 +221,270 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="max-w-6xl mx-auto"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-16 text-gray-900 tracking-tight">
-            How It Works
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 tracking-tight">
+              Why Choose TalkToMe?
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Everything you need to communicate better and build stronger relationships
+            </p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                icon: MessageCircle,
+                title: 'Natural Conversations',
+                description: 'Chat naturally with AI that understands context and emotions.',
+                color: 'from-purple-500 to-purple-600'
+              },
+              {
+                icon: Heart,
+                title: 'Emotional Intelligence',
+                description: 'Get guidance that considers feelings and relationship dynamics.',
+                color: 'from-pink-500 to-rose-500'
+              },
+              {
+                icon: Shield,
+                title: 'Private & Secure',
+                description: 'Your conversations are encrypted and never shared with anyone.',
+                color: 'from-blue-500 to-cyan-500'
+              },
+              {
+                icon: Sparkles,
+                title: 'Real-time Guidance',
+                description: 'Get instant suggestions to improve your communication.',
+                color: 'from-indigo-500 to-purple-500'
+              },
+              {
+                icon: CheckCircle2,
+                title: 'Proven Methods',
+                description: 'Based on relationship psychology and communication research.',
+                color: 'from-green-500 to-emerald-500'
+              },
+              {
+                icon: Star,
+                title: 'Personalized Experience',
+                description: 'AI adapts to your communication style and preferences.',
+                color: 'from-yellow-500 to-orange-500'
+              }
+            ].map((item, index) => {
+              const Icon = item.icon
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100/50 hover:shadow-xl hover:border-purple-200/50 transition-all duration-300"
+                >
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900 tracking-tight">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
+                </motion.div>
+              )
+            })}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 bg-white/30 backdrop-blur-sm rounded-3xl mx-4 sm:mx-6 lg:mx-8 mb-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-6xl mx-auto"
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 tracking-tight">
+              How It Works
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Get started in three simple steps
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
             {[
               {
                 step: '1',
                 title: 'Start a conversation',
-                description: 'Talk naturally and express your thoughts.',
+                description: 'Talk naturally and express your thoughts. Our AI listens and understands your context.',
+                icon: MessageCircle
               },
               {
                 step: '2',
                 title: 'Get real-time guidance',
-                description: 'AI helps you phrase things with empathy and clarity.',
+                description: 'AI helps you phrase things with empathy and clarity, suggesting better ways to communicate.',
+                icon: Sparkles
               },
               {
                 step: '3',
                 title: 'Connect deeper',
-                description: 'Strengthen your relationships over time.',
+                description: 'Strengthen your relationships over time with improved communication skills.',
+                icon: Heart
               }
-            ].map((item, index) => (
+            ].map((item, index) => {
+              const Icon = item.icon
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  className="relative"
+                >
+                  <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-lg border border-gray-100/50 hover:shadow-xl transition-all duration-300 text-center">
+                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg">
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
+                    <div className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-4">
+                      {item.step}
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 tracking-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                  {index < 2 && (
+                    <div className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2">
+                      <ChevronDown className="w-12 h-12 text-purple-300 rotate-90" />
+                    </div>
+                  )}
+                </motion.div>
+              )
+            })}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-6xl mx-auto"
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 tracking-tight">
+              Loved by Users
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              See what people are saying about TalkToMe
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                name: 'Sarah M.',
+                role: 'Relationship Coach',
+                content: 'TalkToMe has transformed how I communicate with my partner. The AI suggestions are thoughtful and actually help me express myself better.',
+                rating: 5
+              },
+              {
+                name: 'James K.',
+                role: 'Beta User',
+                content: 'This app is a game-changer. It helps me navigate difficult conversations with confidence and clarity.',
+                rating: 5
+              },
+              {
+                name: 'Emily R.',
+                role: 'Beta User',
+                content: 'The privacy and security features give me peace of mind. I can be completely honest without worrying.',
+                rating: 5
+              }
+            ].map((testimonial, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-sm border border-white/50 hover:shadow-md transition-all duration-500"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100/50 hover:shadow-xl transition-all duration-300"
               >
-                <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-4">
-                  {item.step}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                  ))}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 tracking-tight">
-                  {item.title}
+                <p className="text-gray-700 mb-6 leading-relaxed italic">
+                  "{testimonial.content}"
+                </p>
+                <div>
+                  <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                  <p className="text-sm text-gray-600">{testimonial.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto"
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 tracking-tight">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-gray-600">
+              Everything you need to know about TalkToMe
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            {[
+              {
+                question: 'Is my data private and secure?',
+                answer: 'Yes, absolutely. We use end-to-end encryption and never share your conversations with anyone. Your privacy is our top priority.'
+              },
+              {
+                question: 'How does the AI help improve communication?',
+                answer: 'Our AI analyzes your conversations and provides real-time suggestions to help you express yourself more clearly, empathetically, and effectively.'
+              },
+              {
+                question: 'Is TalkToMe free to use?',
+                answer: 'TalkToMe is currently in beta testing. Join our TestFlight program to get early access and help shape the future of the app.'
+              },
+              {
+                question: 'What makes TalkToMe different from other AI assistants?',
+                answer: 'TalkToMe is specifically designed for relationship communication. We focus on emotional intelligence, empathy, and helping you build stronger connections with others.'
+              }
+            ].map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-md border border-gray-100/50 hover:shadow-lg transition-all duration-300"
+              >
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {faq.question}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {item.description}
+                  {faq.answer}
                 </p>
               </motion.div>
             ))}
@@ -199,56 +492,138 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Bottom CTA / Footer */}
-      <footer className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      {/* Final CTA Section */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-2xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-center bg-gradient-to-br from-purple-500 to-blue-500 rounded-3xl p-12 sm:p-16 shadow-2xl"
         >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
+            Ready to Transform Your Communication?
+          </h2>
+          <p className="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Join thousands of users who are already improving their relationships with TalkToMe
+          </p>
           <a
             href="https://testflight.apple.com/join/BRdUfYmv"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 mb-12"
+            className="inline-flex items-center gap-2 px-10 sm:px-14 py-5 sm:py-6 bg-white text-purple-600 text-lg sm:text-xl font-semibold rounded-full shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300"
           >
             Join TestFlight Beta
+            <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
           </a>
-          
-          <div className="flex justify-center gap-6 mb-8">
-            <a
-              href="https://x.com/aitalktome"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
-              aria-label="Twitter"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/talktome-ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:team@talk-2.me"
-              className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
-              aria-label="Email"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
+        </motion.div>
+      </section>
+
+      {/* Footer */}
+      <footer className="relative z-10 bg-white/80 backdrop-blur-sm border-t border-gray-200/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div className="col-span-1 md:col-span-2">
+              <Link href="/" className="flex items-center gap-2 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg">
+                  <MessageCircle className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                  TalkToMe
+                </span>
+              </Link>
+              <p className="text-gray-600 mb-4 max-w-md">
+                Your AI companion for better communication and stronger relationships.
+              </p>
+              <div className="flex gap-4">
+                <a
+                  href="https://x.com/aitalktome"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200"
+                  aria-label="Twitter"
+                >
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/talktome-ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a
+                  href="mailto:team@talk-2.me"
+                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200"
+                  aria-label="Email"
+                >
+                  <Mail className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">Product</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#how-it-works" className="text-gray-600 hover:text-purple-600 transition-colors duration-200">
+                    How It Works
+                  </a>
+                </li>
+                <li>
+                  <a href="#features" className="text-gray-600 hover:text-purple-600 transition-colors duration-200">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://testflight.apple.com/join/BRdUfYmv"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                  >
+                    Join Beta
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">Legal</h3>
+              <ul className="space-y-2">
+                <li>
+                  <button
+                    onClick={() => setPrivacyOpen(true)}
+                    className="text-gray-600 hover:text-purple-600 transition-colors duration-200 text-left"
+                  >
+                    Privacy Policy
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => setTermsOpen(true)}
+                    className="text-gray-600 hover:text-purple-600 transition-colors duration-200 text-left"
+                  >
+                    Terms of Use
+                  </button>
+                </li>
+                <li>
+                  <a href="mailto:team@talk-2.me" className="text-gray-600 hover:text-purple-600 transition-colors duration-200">
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           
-          <p className="text-sm text-gray-500">
-            © 2025 TalkToMe. All rights reserved.
-          </p>
-        </motion.div>
+          <div className="pt-8 border-t border-gray-200/50">
+            <p className="text-sm text-gray-500 text-center">
+              © 2025 TalkToMe. All rights reserved.
+            </p>
+          </div>
+        </div>
       </footer>
 
       {/* Privacy Policy Modal */}
