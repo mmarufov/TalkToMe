@@ -6,14 +6,14 @@ import React from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'TalkToMe — AI-Powered Relationship Assistant',
+  title: 'TalkToMe - AI-Powered Relationship Assistant',
   description: 'Express yourself. Connect deeper. Your AI companion — a safe space to vent, reflect, and have meaningful conversations.',
   icons: {
     icon: '/favicon.svg',
   },
   openGraph: {
-    title: 'TalkToMe — AI-Powered Relationship Assistant',
-    description: 'Express yourself. Connect deeper. Your AI companion — a safe space to vent, reflect, and have meaningful conversations.',
+    title: 'TalkToMe - AI-Powered Relationship Assistant',
+    description: 'Express yourself. Connect deeper. Your AI companion - a safe space to vent, reflect, and have meaningful conversations.',
     type: 'website',
   },
 }
