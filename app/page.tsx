@@ -213,21 +213,25 @@ export default function Home() {
           
           <div className="flex justify-center gap-6 mb-8">
             <a
-              href="#"
+              href="https://x.com/aitalktome"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
               aria-label="Twitter"
             >
               <Twitter className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/company/talktome-ai"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="mailto:team@talk-2.me"
               className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
               aria-label="Email"
             >
