@@ -90,7 +90,7 @@ export default function Home() {
           className="max-w-4xl mx-auto text-center"
         >
           <p className="text-sm sm:text-base font-medium text-purple-600 mb-4 tracking-wide uppercase">
-            AI-powered relationship assistant
+            AI-Powered Relationship Assistant
           </p>
           
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 tracking-tight leading-none">
@@ -102,7 +102,7 @@ export default function Home() {
           </p>
           
           <p className="text-base sm:text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Your AI companion for meaningful conversations. Navigate difficult moments with confidence and build stronger relationships through intelligent communication guidance.
+            Your AI companion — a safe space to vent, reflect, and have meaningful conversations. Navigate emotions, handle difficult moments, communicate with confidence and build stronger relationships.
           </p>
           
           <a
