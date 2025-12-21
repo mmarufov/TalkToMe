@@ -71,7 +71,9 @@ export default function Home() {
                 Privacy
               </button>
               <a
-                href="#testflight"
+                href="https://testflight.apple.com/join/BRdUfYmv"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-5 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-all duration-300"
               >
                 Join Beta
@@ -106,7 +108,9 @@ export default function Home() {
           </p>
           
           <a
-            href="#testflight"
+            href="https://testflight.apple.com/join/BRdUfYmv"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           >
             Join TestFlight Beta
@@ -205,7 +209,9 @@ export default function Home() {
           className="max-w-2xl mx-auto text-center"
         >
           <a
-            href="#testflight"
+            href="https://testflight.apple.com/join/BRdUfYmv"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 mb-12"
           >
             Join TestFlight Beta
