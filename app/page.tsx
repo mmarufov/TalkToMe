@@ -20,7 +20,8 @@ import {
   Heart,
   CheckCircle2,
   Star,
-  ChevronDown
+  ChevronDown,
+  ChevronRight
 } from 'lucide-react'
 
 const fadeIn = {
@@ -360,134 +361,12 @@ export default function Home() {
                   </div>
                   {index < 2 && (
                     <div className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2">
-                      <ChevronDown className="w-12 h-12 text-purple-300 rotate-90" />
+                      <ChevronRight className="w-12 h-12 text-purple-300" />
                     </div>
                   )}
                 </motion.div>
               )
             })}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto"
-        >
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 tracking-tight">
-              Loved by Users
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              See what people are saying about TalkToMe
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              {
-                name: 'Sarah M.',
-                role: 'Relationship Coach',
-                content: 'TalkToMe has transformed how I communicate with my partner. The AI suggestions are thoughtful and actually help me express myself better.',
-                rating: 5
-              },
-              {
-                name: 'James K.',
-                role: 'Beta User',
-                content: 'This app is a game-changer. It helps me navigate difficult conversations with confidence and clarity.',
-                rating: 5
-              },
-              {
-                name: 'Emily R.',
-                role: 'Beta User',
-                content: 'The privacy and security features give me peace of mind. I can be completely honest without worrying.',
-                rating: 5
-              }
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100/50 hover:shadow-xl transition-all duration-300"
-              >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 leading-relaxed italic">
-                  "{testimonial.content}"
-                </p>
-                <div>
-                  <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 tracking-tight">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-lg text-gray-600">
-              Everything you need to know about TalkToMe
-            </p>
-          </div>
-          
-          <div className="space-y-4">
-            {[
-              {
-                question: 'Is my data private and secure?',
-                answer: 'Yes, absolutely. We use end-to-end encryption and never share your conversations with anyone. Your privacy is our top priority.'
-              },
-              {
-                question: 'How does the AI help improve communication?',
-                answer: 'Our AI analyzes your conversations and provides real-time suggestions to help you express yourself more clearly, empathetically, and effectively.'
-              },
-              {
-                question: 'Is TalkToMe free to use?',
-                answer: 'TalkToMe is currently in beta testing. Join our TestFlight program to get early access and help shape the future of the app.'
-              },
-              {
-                question: 'What makes TalkToMe different from other AI assistants?',
-                answer: 'TalkToMe is specifically designed for relationship communication. We focus on emotional intelligence, empathy, and helping you build stronger connections with others.'
-              }
-            ].map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-md border border-gray-100/50 hover:shadow-lg transition-all duration-300"
-              >
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {faq.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {faq.answer}
-                </p>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
       </section>
