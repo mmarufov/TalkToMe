@@ -36,6 +36,14 @@ export default function Home() {
   const [showInfinity, setShowInfinity] = useState(false)
   const [privacyOpen, setPrivacyOpen] = useState(false)
   const [termsOpen, setTermsOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -299,11 +307,12 @@ export default function Home() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100/50 hover:shadow-xl hover:border-purple-200/50 transition-all duration-300"
+                  initial={{ opacity: 0, y: isMobile ? 14 : 20, scale: isMobile ? 1 : 0.98 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
+                  className="group bg-white/90 sm:bg-white/80 sm:backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100/50 hover:shadow-xl hover:border-purple-200/50 transition-all duration-300 transform-gpu will-change-transform"
+                  style={{ contain: 'layout paint', willChange: 'transform, opacity' }}
                 >
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className="w-6 h-6 text-white" />
@@ -364,13 +373,13 @@ export default function Home() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  initial={{ opacity: 0, y: isMobile ? 14 : 20, scale: isMobile ? 1 : 0.98 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
                   className="relative"
                 >
-                  <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-lg border border-gray-100/50 hover:shadow-xl transition-all duration-300 text-center">
+                  <div className="bg-white/95 sm:bg-white/90 sm:backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-lg border border-gray-100/50 hover:shadow-xl transition-all duration-300 text-center transform-gpu will-change-transform" style={{ contain: 'layout paint', willChange: 'transform, opacity' }}>
                     <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
