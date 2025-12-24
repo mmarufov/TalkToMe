@@ -304,13 +304,19 @@ export default function Home() {
               }
             ].map((item, index) => {
               const Icon = item.icon
+              const initial = isMobile ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.98 }
+              const animate = isMobile ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }
+              const transition = isMobile
+                ? { duration: 0.3, ease: 'easeOut' }
+                : { duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }
+
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: isMobile ? 14 : 20, scale: isMobile ? 1 : 0.98 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  initial={initial}
+                  whileInView={animate}
                   viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
+                  transition={transition}
                   className="group bg-white/90 sm:bg-white/80 sm:backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100/50 hover:shadow-xl hover:border-purple-200/50 transition-all duration-300 transform-gpu will-change-transform"
                   style={{ contain: 'layout paint', willChange: 'transform, opacity' }}
                 >
@@ -370,13 +376,19 @@ export default function Home() {
               }
             ].map((item, index) => {
               const Icon = item.icon
+              const initial = isMobile ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.98 }
+              const animate = isMobile ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }
+              const transition = isMobile
+                ? { duration: 0.3, ease: 'easeOut' }
+                : { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }
+
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: isMobile ? 14 : 20, scale: isMobile ? 1 : 0.98 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  initial={initial}
+                  whileInView={animate}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
+                  transition={transition}
                   className="relative"
                 >
                   <div className="bg-white/95 sm:bg-white/90 sm:backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-lg border border-gray-100/50 hover:shadow-xl transition-all duration-300 text-center transform-gpu will-change-transform" style={{ contain: 'layout paint', willChange: 'transform, opacity' }}>
