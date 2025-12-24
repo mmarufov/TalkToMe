@@ -162,7 +162,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-base sm:text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Your AI companion — a safe space to vent, reflect, and have meaningful conversations. Navigate emotions, handle difficult moments, communicate with confidence and build stronger relationships.
+            Your AI companion - a safe space to vent, reflect, and have meaningful conversations. Navigate emotions, handle difficult moments, communicate with confidence and build stronger relationships.
           </motion.p>
           
           <motion.div
@@ -201,21 +201,8 @@ export default function Home() {
           <div className="w-full max-w-5xl mx-auto min-h-[600px] bg-gradient-to-br from-purple-100/80 via-blue-100/80 to-indigo-100/80 backdrop-blur-sm rounded-3xl flex items-center justify-center py-24 shadow-2xl border border-white/50 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10"></div>
             <div className="text-center p-8 relative z-10">
-              <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center shadow-2xl"
-              >
-                <svg
-                  className="w-10 h-10 text-white ml-1"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </motion.div>
-              <p className="text-gray-700 text-xl font-semibold mb-2">Demo Video Coming Soon</p>
-              <p className="text-gray-600 text-sm">See TalkToMe in action</p>
+              <p className="text-gray-700 text-2xl sm:text-3xl font-semibold mb-3">Demo Video Coming Soon</p>
+              <p className="text-gray-600 text-lg">See TalkToMe in action</p>
             </div>
           </div>
         </motion.div>
@@ -463,11 +450,6 @@ export default function Home() {
                 <li>
                   <a href="#how-it-works" className="text-gray-600 hover:text-purple-600 transition-colors duration-200">
                     How It Works
-                  </a>
-                </li>
-                <li>
-                  <a href="#features" className="text-gray-600 hover:text-purple-600 transition-colors duration-200">
-                    Features
                   </a>
                 </li>
                 <li>
