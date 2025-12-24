@@ -32,42 +32,7 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 relative overflow-hidden">
-      {/* Decorative infinity sign background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 infinity-symbol">
-          <svg
-            width="1000"
-            height="500"
-            viewBox="0 0 200 100"
-            className="w-full h-full"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#a855f7" />
-                <stop offset="50%" stopColor="#3b82f6" />
-                <stop offset="100%" stopColor="#6366f1" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M 30 50 
-                 C 30 35, 45 35, 50 50
-                 C 55 65, 30 65, 30 50
-                 M 170 50
-                 C 170 35, 155 35, 150 50
-                 C 145 65, 170 65, 170 50
-                 M 50 50
-                 L 150 50"
-              stroke="url(#infinityGradient)"
-              strokeWidth="12"
-              fill="none"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
-      </div>
-
+    <main className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-50 to-blue-100 relative overflow-hidden">
       {/* Navigation */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
