@@ -48,34 +48,10 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 opacity-10 animate-blob">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] opacity-10 animate-blob">
           <svg
             viewBox="0 0 200 100"
             className="w-full h-full text-purple-300 filter blur-xl"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="12"
-            strokeLinecap="round"
-          >
-            <path d="M 30 50 Q 10 30 30 10 Q 50 30 70 50 Q 50 70 30 50 M 70 50 Q 90 30 110 10 Q 130 30 150 50 Q 130 70 110 50 Q 90 70 70 50" />
-          </svg>
-        </div>
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 opacity-10 animate-blob animation-delay-2000">
-          <svg
-            viewBox="0 0 200 100"
-            className="w-full h-full text-blue-300 filter blur-xl"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="12"
-            strokeLinecap="round"
-          >
-            <path d="M 30 50 Q 10 30 30 10 Q 50 30 70 50 Q 50 70 30 50 M 70 50 Q 90 30 110 10 Q 130 30 150 50 Q 130 70 110 50 Q 90 70 70 50" />
-          </svg>
-        </div>
-        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 opacity-10 animate-blob animation-delay-4000">
-          <svg
-            viewBox="0 0 200 100"
-            className="w-full h-full text-indigo-300 filter blur-xl"
             fill="none"
             stroke="currentColor"
             strokeWidth="12"
