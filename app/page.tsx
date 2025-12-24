@@ -48,9 +48,40 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] opacity-12">
+          <svg
+            viewBox="0 0 200 100"
+            className="w-full h-full"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#a855f7" />
+                <stop offset="50%" stopColor="#3b82f6" />
+                <stop offset="100%" stopColor="#6366f1" />
+              </linearGradient>
+              <filter id="blur">
+                <feGaussianBlur stdDeviation="25" />
+              </filter>
+            </defs>
+            {/* Infinity symbol (∞) - lemniscate curve */}
+            <path
+              d="M 30 50 
+                 C 30 30, 50 30, 60 50
+                 C 70 70, 90 70, 100 50
+                 C 110 30, 130 30, 140 50
+                 C 150 70, 170 70, 170 50
+                 C 170 30, 150 30, 140 50
+                 C 130 70, 110 70, 100 50
+                 C 90 30, 70 30, 60 50
+                 C 50 70, 30 70, 30 50 Z"
+              stroke="url(#infinityGradient)"
+              strokeWidth="15"
+              fill="none"
+              filter="url(#blur)"
+            />
+          </svg>
+        </div>
       </div>
 
       {/* Navigation */}
