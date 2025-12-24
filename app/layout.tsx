@@ -6,25 +6,25 @@ import React from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'TalkToMe',
-  description: 'Express yourself. Connect deeper. Your AI companion - a safe space to vent, reflect, and have meaningful conversations. Navigate emotions, handle difficult moments, and build stronger relationships with TalkToMe.',
+  title: 'TalkToMe - AI-Powered Relationship Assistant | Better Communication, Stronger Relationships',
+  description: 'Express yourself. Connect deeper. Your AI companion — a safe space to vent, reflect, and have meaningful conversations. Navigate emotions, handle difficult moments, and build stronger relationships with TalkToMe.',
   keywords: ['AI assistant', 'relationship communication', 'emotional intelligence', 'communication coach', 'relationship advice', 'AI chat', 'mental health', 'wellness'],
   authors: [{ name: 'TalkToMe Team' }],
   creator: 'TalkToMe',
   publisher: 'TalkToMe',
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
   },
   openGraph: {
-    title: 'TalkToMe',
+    title: 'TalkToMe - AI-Powered Relationship Assistant',
     description: 'Express yourself. Connect deeper. Your AI companion - a safe space to vent, reflect, and have meaningful conversations.',
     type: 'website',
     siteName: 'TalkToMe',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TalkToMe',
+    title: 'TalkToMe - AI-Powered Relationship Assistant',
     description: 'Express yourself. Connect deeper. Your AI companion for better communication and stronger relationships.',
     creator: '@aitalktome',
   },
