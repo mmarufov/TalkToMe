@@ -75,7 +75,7 @@ export default function Home() {
                   alt="TalkToMe Logo"
                   width={40}
                   height={40}
-                  className="object-contain"
+                  className="object-contain rounded-lg"
                   priority
                 />
               </div>
@@ -418,7 +418,7 @@ export default function Home() {
                     alt="TalkToMe Logo"
                     width={40}
                     height={40}
-                    className="object-contain"
+                    className="object-contain rounded-lg"
                   />
                 </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
