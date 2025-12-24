@@ -48,38 +48,40 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] opacity-12">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 opacity-10 animate-blob">
           <svg
             viewBox="0 0 200 100"
-            className="w-full h-full"
-            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full text-purple-300 filter blur-xl"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="12"
+            strokeLinecap="round"
           >
-            <defs>
-              <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#a855f7" />
-                <stop offset="50%" stopColor="#3b82f6" />
-                <stop offset="100%" stopColor="#6366f1" />
-              </linearGradient>
-              <filter id="blur">
-                <feGaussianBlur stdDeviation="25" />
-              </filter>
-            </defs>
-            {/* Infinity symbol (∞) - lemniscate curve */}
-            <path
-              d="M 30 50 
-                 C 30 30, 50 30, 60 50
-                 C 70 70, 90 70, 100 50
-                 C 110 30, 130 30, 140 50
-                 C 150 70, 170 70, 170 50
-                 C 170 30, 150 30, 140 50
-                 C 130 70, 110 70, 100 50
-                 C 90 30, 70 30, 60 50
-                 C 50 70, 30 70, 30 50 Z"
-              stroke="url(#infinityGradient)"
-              strokeWidth="15"
-              fill="none"
-              filter="url(#blur)"
-            />
+            <path d="M 30 50 Q 10 30 30 10 Q 50 30 70 50 Q 50 70 30 50 M 70 50 Q 90 30 110 10 Q 130 30 150 50 Q 130 70 110 50 Q 90 70 70 50" />
+          </svg>
+        </div>
+        <div className="absolute top-1/3 right-1/4 w-80 h-80 opacity-10 animate-blob animation-delay-2000">
+          <svg
+            viewBox="0 0 200 100"
+            className="w-full h-full text-blue-300 filter blur-xl"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="12"
+            strokeLinecap="round"
+          >
+            <path d="M 30 50 Q 10 30 30 10 Q 50 30 70 50 Q 50 70 30 50 M 70 50 Q 90 30 110 10 Q 130 30 150 50 Q 130 70 110 50 Q 90 70 70 50" />
+          </svg>
+        </div>
+        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 opacity-10 animate-blob animation-delay-4000">
+          <svg
+            viewBox="0 0 200 100"
+            className="w-full h-full text-indigo-300 filter blur-xl"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="12"
+            strokeLinecap="round"
+          >
+            <path d="M 30 50 Q 10 30 30 10 Q 50 30 70 50 Q 50 70 30 50 M 70 50 Q 90 30 110 10 Q 130 30 150 50 Q 130 70 110 50 Q 90 70 70 50" />
           </svg>
         </div>
       </div>
@@ -111,7 +113,7 @@ export default function Home() {
                 />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent tracking-tight">
-                TalkToMe
+              TalkToMe
               </span>
             </Link>
             <div className="flex items-center gap-6 sm:gap-8">
@@ -163,8 +165,8 @@ export default function Home() {
           >
             <Sparkles className="w-4 h-4 text-purple-600" />
             <p className="text-sm font-semibold text-purple-700 tracking-wide">
-              AI-Powered Relationship Assistant
-            </p>
+            AI-Powered Relationship Assistant
+          </p>
           </motion.div>
           
           <motion.h1 
@@ -174,7 +176,7 @@ export default function Home() {
             className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight leading-none"
           >
             <span className="bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 bg-clip-text text-transparent">
-              TalkToMe
+            TalkToMe
             </span>
           </motion.h1>
           
@@ -202,15 +204,15 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <a
-              href="https://testflight.apple.com/join/BRdUfYmv"
-              target="_blank"
-              rel="noopener noreferrer"
+          <a
+            href="https://testflight.apple.com/join/BRdUfYmv"
+            target="_blank"
+            rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden"
-            >
+          >
               <span className="relative z-10">Join TestFlight Beta</span>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </a>
+          </a>
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Shield className="w-4 h-4 text-green-500" />
               <span>Secure & Private</span>
@@ -333,8 +335,8 @@ export default function Home() {
         >
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 tracking-tight">
-              How It Works
-            </h2>
+            How It Works
+          </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Get started in three simple steps
             </p>
@@ -363,11 +365,11 @@ export default function Home() {
             ].map((item, index) => {
               const Icon = item.icon
               return (
-                <motion.div
-                  key={index}
+              <motion.div
+                key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.15 }}
                   className="relative"
                 >
@@ -376,21 +378,21 @@ export default function Home() {
                       <Icon className="w-8 h-8 text-white" />
                     </div>
                     <div className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-4">
-                      {item.step}
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 tracking-tight">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {item.description}
-                    </p>
+                  {item.step}
+                </div>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {item.description}
+                </p>
                   </div>
                   {index < 2 && (
                     <div className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2">
                       <ChevronRight className="w-12 h-12 text-purple-300" />
                     </div>
                   )}
-                </motion.div>
+              </motion.div>
               )
             })}
           </div>
@@ -447,31 +449,31 @@ export default function Home() {
                 Your AI companion for better communication and stronger relationships.
               </p>
               <div className="flex gap-4">
-                <a
-                  href="https://x.com/aitalktome"
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <a
+              href="https://x.com/aitalktome"
+              target="_blank"
+              rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/talktome-ai"
-                  target="_blank"
-                  rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              <Twitter className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/talktome-ai"
+              target="_blank"
+              rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a
-                  href="mailto:team@talk-2.me"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="mailto:team@talk-2.me"
                   className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200"
-                  aria-label="Email"
-                >
-                  <Mail className="w-5 h-5" />
-                </a>
+              aria-label="Email"
+            >
+              <Mail className="w-5 h-5" />
+            </a>
               </div>
             </div>
             
@@ -526,8 +528,8 @@ export default function Home() {
           
           <div className="pt-8 border-t border-gray-200/50">
             <p className="text-sm text-gray-500 text-center">
-              © 2025 TalkToMe. All rights reserved.
-            </p>
+            © 2025 TalkToMe. All rights reserved.
+          </p>
           </div>
         </div>
       </footer>
