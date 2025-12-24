@@ -48,24 +48,26 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] mix-blend-multiply filter blur-xl opacity-20 animate-blob">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[600px] mix-blend-multiply filter blur-xl opacity-20 animate-blob">
           <svg viewBox="0 0 200 100" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-            <path
-              d="M 50 50 
-                 C 50 30, 60 20, 75 30
-                 C 90 40, 100 50, 100 50
-                 C 100 50, 110 60, 125 70
-                 C 140 80, 150 70, 150 50
-                 C 150 30, 140 20, 125 30
-                 C 110 40, 100 50, 100 50
-                 C 100 50, 90 60, 75 70
-                 C 60 80, 50 70, 50 50"
-              stroke="url(#infinityGradient)"
-              strokeWidth="15"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <g transform="translate(100, 50)">
+              <path
+                d="M -60 0 
+                   C -60 -25, -45 -40, -25 -25
+                   C -5 -10, 0 0, 0 0
+                   C 0 0, 5 10, 25 25
+                   C 45 40, 60 25, 60 0
+                   C 60 -25, 45 -40, 25 -25
+                   C 5 -10, 0 0, 0 0
+                   C 0 0, -5 10, -25 25
+                   C -45 40, -60 25, -60 0"
+                stroke="url(#infinityGradient)"
+                strokeWidth="20"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </g>
             <defs>
               <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#c084fc" />
