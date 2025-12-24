@@ -33,12 +33,14 @@ const fadeIn = {
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false)
+  const [showInfinity, setShowInfinity] = useState(false)
   const [privacyOpen, setPrivacyOpen] = useState(false)
   const [termsOpen, setTermsOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
+      setShowInfinity(window.scrollY > 280)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -47,8 +49,12 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none flex items-center justify-center">
-        <div className="relative w-[1400px] h-[700px] mix-blend-multiply filter blur-2xl opacity-20 animate-blob">
+      <div
+        className={`fixed inset-0 overflow-hidden pointer-events-none flex items-center justify-center transition-opacity duration-700 ${
+          showInfinity ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <div className="relative w-[1400px] h-[700px] mix-blend-multiply filter blur-xl opacity-20 animate-blob">
           <svg viewBox="0 0 200 100" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
             <path
               d="M 50 50 
