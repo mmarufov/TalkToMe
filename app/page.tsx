@@ -48,19 +48,23 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] mix-blend-multiply filter blur-xl opacity-20 animate-blob">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] mix-blend-multiply filter blur-xl opacity-20 animate-blob">
           <svg viewBox="0 0 200 100" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
             <path
-              d="M 25 50 
-                 C 25 30, 35 20, 50 30
-                 C 65 40, 75 50, 75 50
-                 C 75 50, 85 60, 100 70
-                 C 115 80, 125 70, 125 50
-                 C 125 30, 115 20, 100 30
-                 C 85 40, 75 50, 75 50
-                 C 75 50, 65 60, 50 70
-                 C 35 80, 25 70, 25 50 Z"
-              fill="url(#infinityGradient)"
+              d="M 50 50 
+                 C 50 30, 60 20, 75 30
+                 C 90 40, 100 50, 100 50
+                 C 100 50, 110 60, 125 70
+                 C 140 80, 150 70, 150 50
+                 C 150 30, 140 20, 125 30
+                 C 110 40, 100 50, 100 50
+                 C 100 50, 90 60, 75 70
+                 C 60 80, 50 70, 50 50"
+              stroke="url(#infinityGradient)"
+              strokeWidth="15"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <defs>
               <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
