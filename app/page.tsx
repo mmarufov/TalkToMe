@@ -48,7 +48,7 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none flex items-center justify-center">
-        <div className="relative w-[1200px] h-[600px] mix-blend-multiply filter blur-xl opacity-20 animate-blob">
+        <div className="relative w-[1400px] h-[700px] mix-blend-multiply filter blur-2xl opacity-20 animate-blob">
           <svg viewBox="0 0 200 100" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
             <path
               d="M 50 50 
@@ -61,7 +61,7 @@ export default function Home() {
                  C 100 50, 90 60, 75 70
                  C 60 80, 50 70, 50 50"
               stroke="url(#infinityGradient)"
-              strokeWidth="10"
+              strokeWidth="8"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
