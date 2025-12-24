@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import {
   Dialog,
@@ -67,9 +68,16 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="flex items-center justify-between"
           >
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                <MessageCircle className="w-5 h-5 text-white" />
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative w-10 h-10 group-hover:scale-105 transition-transform duration-300">
+                <Image
+                  src="/logo.png"
+                  alt="TalkToMe Logo"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                  priority
+                />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent tracking-tight">
                 TalkToMe
@@ -403,9 +411,15 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div className="col-span-1 md:col-span-2">
-              <Link href="/" className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg">
-                  <MessageCircle className="w-6 h-6 text-white" />
+              <Link href="/" className="flex items-center gap-3 mb-4 group">
+                <div className="relative w-10 h-10 group-hover:scale-105 transition-transform duration-300">
+                  <Image
+                    src="/logo.png"
+                    alt="TalkToMe Logo"
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                  />
                 </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
                   TalkToMe
