@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 export default function TermsPage() {
@@ -18,12 +17,7 @@ export default function TermsPage() {
 
       {/* Content */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
+        <div className="max-w-4xl mx-auto">
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 sm:p-12 shadow-lg">
             <h1 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
               Terms of Service
@@ -129,7 +123,7 @@ export default function TermsPage() {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )
