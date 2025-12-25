@@ -56,7 +56,7 @@ export default function Home() {
 
   const featureMotionProps = (index: number) =>
     isMobile
-      ? {}
+      ? { initial: false }
       : {
           initial: { opacity: 0, y: 20, scale: 0.98 },
           whileInView: { opacity: 1, y: 0, scale: 1 },
@@ -66,7 +66,7 @@ export default function Home() {
 
   const stepMotionProps = (index: number) =>
     isMobile
-      ? {}
+      ? { initial: false }
       : {
           initial: { opacity: 0, y: 20, scale: 0.98 },
           whileInView: { opacity: 1, y: 0, scale: 1 },
