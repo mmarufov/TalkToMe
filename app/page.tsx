@@ -83,7 +83,7 @@ export default function Home() {
         }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-orange-50 relative overflow-hidden">
       {/* Decorative background elements */}
       <div
         className={`fixed inset-0 overflow-hidden pointer-events-none flex items-center justify-center transition-opacity duration-700 ${
@@ -110,9 +110,9 @@ export default function Home() {
             />
             <defs>
               <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#c084fc" />
-                <stop offset="50%" stopColor="#60a5fa" />
-                <stop offset="100%" stopColor="#818cf8" />
+                <stop offset="0%" stopColor="#fb923c" />
+                <stop offset="50%" stopColor="#f97316" />
+                <stop offset="100%" stopColor="#ea580c" />
               </linearGradient>
             </defs>
           </svg>
@@ -145,7 +145,7 @@ export default function Home() {
                   priority
                 />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent tracking-tight">
+              <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent tracking-tight">
                 TalkToMe
               </span>
             </Link>
@@ -172,10 +172,10 @@ export default function Home() {
                 href="https://testflight.apple.com/join/BRdUfYmv"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-sm font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden group"
+                className="px-5 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden group"
               >
                 <span className="relative z-10">Join Beta</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
             </div>
           </motion.div>
@@ -194,10 +194,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/80 backdrop-blur-sm border border-purple-200/50 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100/80 backdrop-blur-sm border border-orange-200/50 mb-6"
           >
-            <Sparkles className="w-4 h-4 text-purple-600" />
-            <p className="text-sm font-semibold text-purple-700 tracking-wide">
+            <Sparkles className="w-4 h-4 text-orange-600" />
+            <p className="text-sm font-semibold text-orange-700 tracking-wide">
               AI-Powered Relationship Assistant
             </p>
           </motion.div>
@@ -208,7 +208,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight leading-none"
           >
-            <span className="bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gray-900 via-orange-900 to-gray-900 bg-clip-text text-transparent">
               TalkToMe
             </span>
           </motion.h1>
@@ -241,10 +241,10 @@ export default function Home() {
               href="https://testflight.apple.com/join/BRdUfYmv"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-base sm:text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden"
+              className="group inline-flex items-center gap-2 px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-base sm:text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden"
             >
               <span className="relative z-10">Join TestFlight Beta</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </a>
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Shield className="w-4 h-4 text-green-500" />
@@ -264,8 +264,8 @@ export default function Home() {
           className="w-full"
         >
           {/* Video placeholder - replace this div with your video element when ready */}
-          <div className="w-full max-w-5xl mx-auto min-h-[600px] bg-gradient-to-br from-purple-100/80 via-blue-100/80 to-indigo-100/80 backdrop-blur-sm rounded-3xl flex items-center justify-center py-24 shadow-2xl border border-white/50 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10"></div>
+          <div className="w-full max-w-5xl mx-auto min-h-[600px] bg-gradient-to-br from-orange-100/80 via-amber-100/80 to-orange-100/80 backdrop-blur-sm rounded-3xl flex items-center justify-center py-24 shadow-2xl border border-white/50 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-amber-500/10"></div>
             <div className="text-center p-8 relative z-10">
               <p className="text-gray-700 text-2xl sm:text-3xl font-semibold mb-3">Demo Video Coming Soon</p>
               <p className="text-gray-600 text-lg">See TalkToMe in action</p>
@@ -298,37 +298,37 @@ export default function Home() {
                 icon: MessageCircle,
                 title: 'Natural Conversations',
                 description: 'Chat naturally with AI that understands context and emotions.',
-                color: 'from-purple-500 to-purple-600'
+                color: 'from-orange-500 to-orange-600'
               },
               {
                 icon: Heart,
                 title: 'Emotional Intelligence',
                 description: 'Get guidance that considers feelings and relationship dynamics.',
-                color: 'from-pink-500 to-rose-500'
+                color: 'from-orange-400 to-red-500'
               },
               {
                 icon: Shield,
                 title: 'Private & Secure',
                 description: 'Your conversations are encrypted and never shared with anyone.',
-                color: 'from-blue-500 to-cyan-500'
+                color: 'from-amber-500 to-orange-500'
               },
               {
                 icon: Sparkles,
                 title: 'Real-time Guidance',
                 description: 'Get instant suggestions to improve your communication.',
-                color: 'from-indigo-500 to-purple-500'
+                color: 'from-orange-600 to-amber-500'
               },
               {
                 icon: CheckCircle2,
                 title: 'Proven Methods',
                 description: 'Based on relationship psychology and communication research.',
-                color: 'from-green-500 to-emerald-500'
+                color: 'from-orange-500 to-yellow-500'
               },
               {
                 icon: Star,
                 title: 'Personalized Experience',
                 description: 'AI adapts to your communication style and preferences.',
-                color: 'from-yellow-500 to-orange-500'
+                color: 'from-amber-500 to-orange-600'
               }
             ].map((item, index) => {
               const Icon = item.icon
@@ -338,7 +338,7 @@ export default function Home() {
                 <motion.div
                   key={index}
                   {...motionProps}
-                  className="group bg-white/90 sm:bg-white/80 sm:backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100/50 hover:shadow-xl hover:border-purple-200/50 transition-all duration-300 transform-gpu will-change-transform"
+                  className="group bg-white/90 sm:bg-white/80 sm:backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100/50 hover:shadow-xl hover:border-orange-200/50 transition-all duration-300 transform-gpu will-change-transform"
                   style={{ contain: 'layout paint', willChange: 'transform, opacity' }}
                 >
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
@@ -406,10 +406,10 @@ export default function Home() {
                   className="relative"
                 >
                   <div className="bg-white/95 sm:bg-white/90 sm:backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-lg border border-gray-100/50 hover:shadow-xl transition-all duration-300 text-center transform-gpu will-change-transform" style={{ contain: 'layout paint', willChange: 'transform, opacity' }}>
-                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg">
+                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <div className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-4">
+                    <div className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 mb-4">
                       {item.step}
                     </div>
                     <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 tracking-tight">
@@ -421,7 +421,7 @@ export default function Home() {
                   </div>
                   {index < 2 && (
                     <div className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2">
-                      <ChevronRight className="w-12 h-12 text-purple-300" />
+                      <ChevronRight className="w-12 h-12 text-orange-300" />
                     </div>
                   )}
                 </motion.div>
@@ -438,7 +438,7 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center bg-gradient-to-br from-purple-500 to-blue-500 rounded-3xl p-12 sm:p-16 shadow-2xl"
+          className="max-w-4xl mx-auto text-center bg-gradient-to-br from-orange-500 to-amber-500 rounded-3xl p-12 sm:p-16 shadow-2xl"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
             Ready to Transform Your Communication?
@@ -450,7 +450,7 @@ export default function Home() {
             href="https://testflight.apple.com/join/BRdUfYmv"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-10 sm:px-14 py-5 sm:py-6 bg-white text-purple-600 text-lg sm:text-xl font-semibold rounded-full shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-10 sm:px-14 py-5 sm:py-6 bg-white text-orange-600 text-lg sm:text-xl font-semibold rounded-full shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300"
           >
             Join TestFlight Beta
             <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
@@ -473,7 +473,7 @@ export default function Home() {
                     className="object-contain rounded-lg"
                   />
                 </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
                   TalkToMe
                 </span>
               </Link>
@@ -485,7 +485,7 @@ export default function Home() {
                   href="https://x.com/aitalktome"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200"
+                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200"
                   aria-label="Twitter"
                 >
                   <Twitter className="w-5 h-5" />
@@ -494,14 +494,14 @@ export default function Home() {
                   href="https://www.linkedin.com/company/talktome-ai"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200"
+                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
                 <a
                   href="mailto:team@talk-2.me"
-                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200"
+                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200"
                   aria-label="Email"
                 >
                   <Mail className="w-5 h-5" />
@@ -513,7 +513,7 @@ export default function Home() {
               <h3 className="font-semibold text-gray-900 mb-4">Product</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#how-it-works" className="text-gray-600 hover:text-purple-600 transition-colors duration-200">
+                  <a href="#how-it-works" className="text-gray-600 hover:text-orange-600 transition-colors duration-200">
                     How It Works
                   </a>
                 </li>
@@ -522,7 +522,7 @@ export default function Home() {
                     href="https://testflight.apple.com/join/BRdUfYmv"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                    className="text-gray-600 hover:text-orange-600 transition-colors duration-200"
                   >
                     Join Beta
                   </a>
@@ -536,7 +536,7 @@ export default function Home() {
                 <li>
                   <button
                     onClick={() => setPrivacyOpen(true)}
-                    className="text-gray-600 hover:text-purple-600 transition-colors duration-200 text-left"
+                    className="text-gray-600 hover:text-orange-600 transition-colors duration-200 text-left"
                   >
                     Privacy Policy
                   </button>
@@ -544,13 +544,13 @@ export default function Home() {
                 <li>
                   <button
                     onClick={() => setTermsOpen(true)}
-                    className="text-gray-600 hover:text-purple-600 transition-colors duration-200 text-left"
+                    className="text-gray-600 hover:text-orange-600 transition-colors duration-200 text-left"
                   >
                     Terms of Use
                   </button>
                 </li>
                 <li>
-                  <a href="mailto:team@talk-2.me" className="text-gray-600 hover:text-purple-600 transition-colors duration-200">
+                  <a href="mailto:team@talk-2.me" className="text-gray-600 hover:text-orange-600 transition-colors duration-200">
                     Contact Us
                   </a>
                 </li>

@@ -5,12 +5,12 @@ import Link from 'next/link'
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+    <main className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-orange-50">
       {/* Navigation */}
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <Link 
           href="/"
-          className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+          className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
         >
           TalkToMe
         </Link>
@@ -99,7 +99,7 @@ export default function PrivacyPage() {
             <div className="mt-12 pt-8 border-t border-gray-200">
               <Link 
                 href="/"
-                className="text-blue-600 hover:text-blue-800 transition-colors"
+                className="text-orange-600 hover:text-orange-800 transition-colors"
               >
                 ← Back to Home
               </Link>
